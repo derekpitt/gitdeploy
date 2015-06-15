@@ -34,6 +34,7 @@ func (e *Environment) update() {
 
 func (e *Environment) CurrentTag() string {
 	e.update()
+	e.runCmdInDir("git", "checkout", e.Branch)
 	b, _, _ := e.runCmdInDir("git", "describe", e.Branch, "--tags")
 	return strings.TrimSpace(string(b))
 }

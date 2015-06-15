@@ -55,7 +55,8 @@ func (p *Project) Deploy(source, target *Environment, buildNumber string) error 
 	target.commitAndTag(buildNumber)
 
 	// push, what if this rejects??? retry?
-	target.runCmdInDir("git", "push", "-f", "--tags")
+	target.runCmdInDir("git", "push", "-f")
+	target.runCmdInDir("git", "push", "--tags")
 
 	return nil
 }
